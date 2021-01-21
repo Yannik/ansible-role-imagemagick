@@ -1,0 +1,6 @@
+- name: Install imagemagick and ghostscript
+  apt:
+    pkg:
+      - imagemagick
+      - ghostscript # required for imagemagick pdf processing
+    install_recommends: no
