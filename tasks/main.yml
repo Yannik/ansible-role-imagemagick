@@ -5,3 +5,12 @@
       - ghostscript # required for imagemagick pdf processing
     install_recommends: no
   tags: imagemagick
+
+- name: Enable ghostscript pdf reading in imagemagick policy
+  lineinfile:
+    path: /etc/ImageMagick-6/policy.xml
+    line: '  <policy domain="coder" rights="read" pattern="PDF" />'
+    regexp: '\s*<policy.*pattern="PDF".*>'
+    insertbefore: '</policymap>'
+  when: imagemagick_ghostscript_pdf
+  tags: imagemagick
